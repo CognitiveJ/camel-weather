@@ -1,0 +1,11 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.webserviceX.NET">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <web:GetWeather>
+            <!--Optional:-->
+            <web:CityName>$body.city</web:CityName>
+            <!--Optional:-->
+            <web:CountryName>$body.country</web:CountryName>
+        </web:GetWeather>
+    </soapenv:Body>
+</soapenv:Envelope>

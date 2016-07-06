@@ -1,0 +1,22 @@
+path: /globalweather.asmx
+httpMethod: post
+response: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <soap:Body>
+                  <GetWeatherResponse xmlns="http://www.webserviceX.NET">
+                      <GetWeatherResult><![CDATA[<?xml version="1.0" encoding="utf-16"?>
+          <CurrentWeather>
+            <Location>FAILURE STACKTRACE / Norther Ireland(EGAC) 54-36N 005-53W 0M</Location>
+            <Time>Jul 05, 2016 - 05:50 AM EDT / 2016.07.05 0950 UTC</Time>
+            <Wind> from the WNW (300 degrees) at 8 MPH (7 KT) (direction variable):0</Wind>
+            <Visibility> greater than 7 mile(s):0</Visibility>
+            <SkyConditions> mostly cloudy</SkyConditions>
+            <Temperature> 57 F (14 C)</Temperature>
+            <DewPoint> 48 F (9 C)</DewPoint>
+            <RelativeHumidity> 71%</RelativeHumidity>
+            <Pressure> 30.09 in. Hg (1019 hPa)</Pressure>
+            <Status>Success</Status>
+          </CurrentWeather>]]></GetWeatherResult>
+                  </GetWeatherResponse>
+              </soap:Body>
+          </soap:Envelope>
