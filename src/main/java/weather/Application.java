@@ -14,14 +14,11 @@ import static org.springframework.boot.SpringApplication.run;
 @SpringBootApplication
 @EnableAutoConfiguration
 public class Application {
-
     public static void main(String[] args) {
         final ConfigurableApplicationContext app =
                 run(Application.class, args);
-
         final CamelSpringBootApplicationController applicationController
                 = app.getBean(CamelSpringBootApplicationController.class);
-
         applicationController.blockMainThread();
     }
 }

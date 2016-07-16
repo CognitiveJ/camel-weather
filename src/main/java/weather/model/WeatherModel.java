@@ -6,9 +6,9 @@ import org.apache.camel.dataformat.bindy.annotation.DataField;
 
 @CsvRecord(separator = ",", crlf = "UNIX")
 public class WeatherModel {
+
     @DataField(pos = 1)
     private String city;
-
     @DataField(pos = 2)
     private String country;
 

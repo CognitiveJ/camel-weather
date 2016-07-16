@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.TestPropertySource
 import spock.lang.Specification
+import wssimulator.WSSimulator
 
 import java.nio.charset.Charset
 import java.util.concurrent.TimeUnit
@@ -21,7 +22,7 @@ import static weather.TestingUtils.waitFor
  * ./gradlew.bat -Dtest.single=CallRealWebServiceIntegrationTestSpecification test
  */
 @ContextConfiguration(classes = Application.class)
-@TestPropertySource(locations = "classpath:application.properties")
+@TestPropertySource(locations = "classpath:test-integration.properties")
 //uses real world values
 class CallRealWebServiceIntegrationTestSpecification extends Specification {
 
@@ -30,6 +31,10 @@ class CallRealWebServiceIntegrationTestSpecification extends Specification {
     def "CSV Routing with a real service"() {
         setup: "put the CSV into the directory that CAMEL is listening to"
         copyFromTo("/input/weather/cities.csv", new File(directoryLocation + "/cities.csv"))
+        and: "start WSSimulator"
+        WSSimulator.setPort(8866)
+        WSSimulator.addSimulation(getClass().getResource("/ws/weather/sample-get-weather-response.yml").getFile() as File);
+        WSSimulator.shutdown()
         when:
         waitFor(5, TimeUnit.SECONDS) //let camel do its thing.
         then: "read the written values back into this test so we can output them to a print stream (or going further by validating the response)"
@@ -38,5 +43,6 @@ class CallRealWebServiceIntegrationTestSpecification extends Specification {
         true
         cleanup: "delete all files"
         deleteFiles(new File(directoryLocation + "/in.csv"), new File(directoryLocation + "/output.xml"))
+        WSSimulator.shutdown()
     }
 }
